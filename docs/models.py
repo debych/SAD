@@ -13,3 +13,10 @@ class Document(models.Model):
     def __str__(self):
         return self.name
 
+
+class DocumentFile(models.Model):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='files/', verbose_name='файл')
+
+    def __str__(self):
+        return self.file.name.split('/')[-1]
